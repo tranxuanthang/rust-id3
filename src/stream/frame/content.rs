@@ -445,10 +445,6 @@ impl<'a> Decoder<'a> {
             },
         };
         let text = encoding.decode(self.bytes(end)?)?;
-        let text = match self.version {
-            Version::Id3v22 | Version::Id3v23 => text.replace('/', "\0"),
-            Version::Id3v24 => text,
-        };
         Ok(Content::Text(text))
     }
 

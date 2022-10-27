@@ -503,7 +503,7 @@ mod tests {
         let mut buf = Vec::new();
         tag.write_to(&mut buf, Version::Id3v22).unwrap();
         let tag = Tag::read_from(&buf[..]).unwrap();
-        assert_eq!(tag.artist(), Some("artist 1\0artist 2\0artist 3"));
+        assert_eq!(tag.artist(), Some("artist 1/artist 2/artist 3"));
     }
 
     #[test]
@@ -796,8 +796,8 @@ mod tests {
         let genres = tag.genres();
         let artists = tag.artists();
 
-        assert_eq!(genres, Some(vec!["Pop", "Trip-Hop"]));
-        assert_eq!(artists, Some(vec!["First", "Secondary"]));
+        assert_eq!(genres, Some(vec!["Pop/Trip-Hop"]));
+        assert_eq!(artists, Some(vec!["First/Secondary"]));
     }
 
     /// Serato writes its GEOB tags twice with different encoding.
